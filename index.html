@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sự Thật Bất Ngờ!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Inter:wght@400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Patrick Hand', 'Inter', sans-serif;
+            background-color: #fce7f3; /* Màu hồng nhạt */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+        }
+        .initial-message {
+            animation: fadeIn 1s ease-in-out;
+        }
+        .surprise-page {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .birthday-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #db2777; /* Màu hồng đậm */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 100px;
+            height: 150px;
+            background-color: #f9a8d4;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: rise 10s forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes rise {
+            from { bottom: -150px; opacity: 1; }
+            to { bottom: 120%; opacity: 0; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mainContainer" class="container">
+        <!-- Giao diện ban đầu -->
+        <div id="initialMessage" class="initial-message">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-700 mb-4">
+                SỰ THẬT VỀ BẠN ĐÃ BỊ LỘ!
+            </h1>
+            <p class="text-gray-600 mb-8">
+                Bạn có chắc chắn muốn xem sự thật này không?
+            </p>
+            <button id="showTruthButton" class="bg-gradient-to-r from-pink-400 to-rose-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:from-pink-500 hover:to-rose-600 transition-all duration-300">
+                Tôi Muốn Xem
+            </button>
+        </div>
+
+        <!-- Giao diện bất ngờ -->
+        <div id="surprisePage" class="surprise-page">
+            <h1 class="birthday-title mb-4 animate-pulse">
+                Chúc Mừng Sinh Nhật, Minh Hằng!
+            </h1>
+            <p class="text-2xl text-rose-500 font-bold mb-4">
+                Sự thật là... bạn đã già thêm một tuổi rồi! 😂
+            </p>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHY5bXF6OGhldjB2eG5qMmY2NzF1MGl5b3N6dW5lMDhyM3FwY3B0eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3otPoE6FfS81k8t8u4/giphy.gif" alt="Ảnh troll" class="rounded-xl mx-auto my-4 shadow-md">
+            <p class="text-lg text-gray-700 mb-6">
+                Chỉ đùa thôi! Trọng Nguyễn chúc Minh Hằng sinh nhật thật vui, luôn xinh đẹp và thành công trong cuộc sống nhé!
+            </p>
+            <p class="text-sm text-gray-500 mt-6">
+                - Lời chúc từ người bạn lâu năm
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const showTruthButton = document.getElementById('showTruthButton');
+            const initialMessage = document.getElementById('initialMessage');
+            const surprisePage = document.getElementById('surprisePage');
+            const body = document.body;
+
+            showTruthButton.addEventListener('click', () => {
+                initialMessage.style.display = 'none';
+                surprisePage.style.display = 'block';
+
+                // Tạo hiệu ứng bóng bay
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const balloon = document.createElement('div');
+                        balloon.classList.add('balloon');
+                        balloon.style.left = `${Math.random() * 90 + 5}vw`;
+                        balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
+                        body.appendChild(balloon);
+
+                        setTimeout(() => {
+                            balloon.remove();
+                        }, 10000);
+                    }, i * 200);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
